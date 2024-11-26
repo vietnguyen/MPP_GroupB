@@ -88,3 +88,8 @@ developers
 
 ### 3.4 Static class diagram
 ![lab1_uml_diagram mdj](https://github.com/user-attachments/assets/0a40b484-4d11-4e01-8d57-c263418bbc4e)
+
+## Question 4
+![Question4](https://github.com/user-attachments/assets/23c1d3e0-7414-428f-93ab-5adbfb96a5cf)
+
+
