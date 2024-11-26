@@ -8,8 +8,7 @@ We have 2 solutions
 <img src="./images/Question2.png">
 
 ### 2.2 Solution 2
-
-
+<img src="./images/Question 2 Alternative.png">
 
 ## Question 3
 ### 3.1 Problem Description:
