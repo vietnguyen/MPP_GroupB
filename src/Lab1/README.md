@@ -10,7 +10,7 @@
 
 A **Project Manager** manages **multiple projects**. A **project**, before **final release**, is
 required to have a specified **feature set**. Associated with a **project** are **multiple
-releases**. A **release** is a **functional piece** of the project being developed that
+releases**. A **release** is a **functional piece** of the **project** being developed that
 includes a **subset of the feature set** for the **project** and which is to be delivered on a
 **specified date** (the **feature set** and **release date** are determined by the **Project
 Manager**). When the **last release** is delivered, the **project** is considered completed.
