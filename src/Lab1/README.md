@@ -3,7 +3,13 @@
 <img src="./images/Question1.png">
 
 ## Question 2
+We have 2 solutions 
+### 2.1 Solution 1
 <img src="./images/Question2.png">
+
+### 2.2 Solution 2
+
+
 
 ## Question 3
 ### 3.1 Problem Description:
