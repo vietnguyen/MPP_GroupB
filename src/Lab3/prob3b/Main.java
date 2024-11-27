@@ -1,6 +1,5 @@
 package Lab3.prob3B;
 
-import Lab3.prob3B.*;
 
 public class Main {
   public static void main(String[] args){
@@ -11,6 +10,6 @@ public class Main {
       // Create a Cylinder object
       Cylinder cylinder = new Cylinder(5, 10);
       System.out.println("Cylinder Volume: " + cylinder.computeVolume());
-      System.out.println("Base Area (Circle Area): " + cylinder.computeArea());
+      System.out.println("Base Area (Circle Area): " + cylinder.getBase().computeArea());
   }
 }

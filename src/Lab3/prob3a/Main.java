@@ -1,7 +1,5 @@
 package Lab3.prob3A;
 
-import Lab3.prob3A.*;
-
 public class Main {
   public static void main(String[] args){
       // Create a Circle object

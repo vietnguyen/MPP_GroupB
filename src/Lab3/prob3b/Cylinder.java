@@ -15,6 +15,7 @@ public class Cylinder {
         return height;
     }
     public double getRadius(){return base.getRadius();}
+    public Circle getBase(){return base;}
     public void setHeight(double height) {
         this.height = height;
     }
