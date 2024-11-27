@@ -27,3 +27,11 @@ release date **are determined** by the Project Manager). When the last release i
 ![Screenshot 2024-11-26 at 18.09.15.png](https://github.com/user-attachments/assets/64492ef8-6a53-4e71-b711-f3c6b81c7f6f)
 
 ## Question 2
+
+
+## Question 3
+### A.
+<img src="./images/prob3 A.png">
+
+### B.
+<img src="./images/prob3 B.png">
