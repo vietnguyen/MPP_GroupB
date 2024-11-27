@@ -1,0 +1,4 @@
+The association between GradeReport and Student is 1-1. Meanings a Student must have only one GradeReport and a GradeReport also must have only one Student.
+
+In this solution, we assume that the Student class is the owner of the association. This means that the Student class is responsible for the creation and deletion of the GradeReport object. The Student class will have a reference to the GradeReport object. The GradeReport class can not be instantiated without a Student object.
+This is why the constructor of the GradeReport class has package visibility. This means that only classes in the same package can instantiate the GradeReport object.
