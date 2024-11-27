@@ -12,5 +12,8 @@ public class Main {
     System.out.println(studentB.getGradeReport());
     
 //    GradeReport gradeReport = new GradeReport(studentA);// compiler error
+    // Expected output:
+    // Grade of Student: John M is A
+    // Grade of Student: John N is B
   }
 }
