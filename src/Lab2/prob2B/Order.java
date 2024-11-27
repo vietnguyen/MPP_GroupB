@@ -9,11 +9,12 @@ public class Order {
   
   public Order(int orderNumber, int lineNum, double price, int quantity) {
     this.orderNumber = orderNumber;
-    addOrderLine(new OrderLine(lineNum, price, quantity, this));
+    addOrderLine(lineNum, price, quantity);
   }
   
-  public void addOrderLine(OrderLine orderLine) {
-    orderLines.add(orderLine);
+  
+  public void addOrderLine(int lineNum, double price, int quantity) {
+    orderLines.add(new OrderLine(lineNum, price, quantity, this));
   }
   
   public List<OrderLine> getOrderLines() {
