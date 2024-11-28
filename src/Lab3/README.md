@@ -1,4 +1,9 @@
 # Lab 3 Solutions
+## Question 1
+This approach violates symmetry or transitivity property, which are crucial properties of the equals method.
+The subclass compares the attribute which is not shared from superclass.
+To resolve the problem, we need to redesign using composition.
+
 ## Question 3
 
 <img src="./images/prob3A.png">
