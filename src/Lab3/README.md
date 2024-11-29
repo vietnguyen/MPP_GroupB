@@ -27,3 +27,10 @@ Using composition, the Cylinder has-a Circle. The Circle class is embedded in th
 
 * Separates the concerns of 2D (Circle) and 3D (Cylinder) shapes.
 * Avoids misusing inheritance to create artificial relationships.
+
+## Question 4
+Implemented classes by the below design. `Property` is a common interface for the `House, Condominium, Trailer`. They are best practices for using inheritance. Example: `House` **IS-A** `Property`
+Please see the implementation code from [this package link](https://github.com/vietnguyen/MPP_GroupB/tree/74f3368b5da95f68c826395d37584298b76223bf/src/Lab3/prob4)
+
+
+![Screenshot 2024-11-27 at 19 37 27](https://github.com/user-attachments/assets/b8c224ab-f45f-43c8-9814-964b0b69cc49)

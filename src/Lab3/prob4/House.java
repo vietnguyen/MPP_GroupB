@@ -1,6 +1,6 @@
 package lesson3.labs.prob4;
 
-public class House  {
+public class House implements Property{
 
 	private double lotSize;
 	
@@ -9,7 +9,7 @@ public class House  {
 		this.lotSize = lotSize;
 	}
 
-
+	@Override
 	public double computeRent(){
 		return 0.1 * lotSize;
 	}
