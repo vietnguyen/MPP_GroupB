@@ -15,16 +15,22 @@ public class Commisioned extends Employee{
         this.commission = commission;
     }
 
-    @Override
-    public double calcGrossPay(int month, int year) {
+  /**
+   * Commissioned employees are also paid monthly. They receive a small base salary, plus
+   * a percentage (commission) on the total value of all orders they sold during the previous
+   * month.
+   */
+  @Override
+  public double calcGrossPay(int month, int year) {
         double total = baseSalary;
+        int previousMonth = month - 1;
 
         for (Order order : orders){
-            if(order.getOrderDate().getYear() == year && order.getOrderDate().getMonthValue() == month)
+            if(order.getOrderDate().getYear() == year && order.getOrderDate().getMonthValue() == previousMonth)
                 total += order.getOrderAmount();
         }
 
-        return total;
+        return baseSalary + (total * commission);
     }
 
     public void addOrder(Order order){
