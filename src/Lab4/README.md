@@ -1,3 +1,5 @@
-# Lab 4 Solutions
+# Lab4 Solutions
 ## Question A
-<img src="./images/QuestionA.png" alt="calculatePrice sequence diagram">
+## Question B
+## Question C
+## Question D
