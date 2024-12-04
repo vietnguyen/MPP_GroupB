@@ -1,4 +1,4 @@
-package Lab5.prob1;
+package Lab5.prob1.solution2;
 
 public class FlyWithWings implements FlyBehavior {
   public void fly() {
