@@ -125,8 +125,6 @@ public class LoginWindow extends JFrame implements LibWindow {
     		
     	}
     	
-    	
-    	
     	private void defineMiddlePanel() {
     		middlePanel=new JPanel();
     		middlePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
