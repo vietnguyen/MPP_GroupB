@@ -6,14 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import business.ControllerInterface;
 import business.SystemController;
@@ -25,7 +18,8 @@ public class LibrarySystem extends JFrame implements LibWindow {
 	JPanel mainPanel;
 	JMenuBar menuBar;
     JMenu options;
-    JMenuItem login, allBookIds, allMemberIds; 
+    JMenuItem login, allBookIds, allMemberIds, addMember
+			,addBookCopy,addBook,checkOutBook,printCheckout,overdue;
     String pathToImage;
     private boolean isInitialized = false;
     
@@ -78,26 +72,73 @@ public class LibrarySystem extends JFrame implements LibWindow {
     }
     
     private void addMenuItems() {
-       options = new JMenu("Options");  
- 	    menuBar.add(options);
- 	    addLoginMenuItem(login, options);
-			addViewAllBookIdsMenuItem(allBookIds, options);
-			addViewAllMemberIdsMenuItem(allMemberIds, options);
-    }
-		
-		private void addViewAllMemberIdsMenuItem(JMenuItem allMemberIds, JMenu options) {
+		options = new JMenu("Options");
+		menuBar.add(options);
+
+		addViewAllBookIdsMenuItem(options);
+		addViewAllMemberIdsMenuItem(options);
+		addAddMemberMenuItem(options);
+		addBookMenuItem(options);
+		addBookCopyMenuItem(options);
+		checkoutBookMenuItem(options);
+		printCheckoutMenuItem(options);
+		overdueMenuItem(options);
+		addLoginMenuItem(options);
+
+
+	}
+
+	private void addAddMemberMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Add Member");
+		this.addMember.addActionListener(new AddMemberListener());
+		options.add(this.addMember);
+	}
+
+	private void addBookCopyMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Add Book Copy");
+		this.addMember.addActionListener(new AddBookCopyListener());
+		options.add(this.addMember);
+	}
+
+	private void addBookMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Add Book");
+		this.addMember.addActionListener(new AddBookListener());
+		options.add(this.addMember);
+	}
+
+	private void checkoutBookMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Checkout Book");
+		this.addMember.addActionListener(new CheckoutBookListener());
+		options.add(this.addMember);
+	}
+
+
+	private void printCheckoutMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Print Checkout");
+		this.addMember.addActionListener(new PrintCheckoutListener());
+		options.add(this.addMember);
+	}
+
+	private void overdueMenuItem(JMenu options) {
+		this.addMember = new JMenuItem("Overdue");
+		this.addMember.addActionListener(new OverdueListener());
+		options.add(this.addMember);
+	}
+
+
+	private void addViewAllMemberIdsMenuItem(JMenu options) {
 			allMemberIds = new JMenuItem("All Member Ids");
 			allMemberIds.addActionListener(new AllMemberIdsListener());
 			options.add(allMemberIds);
 		}
 		
-		private void addViewAllBookIdsMenuItem(JMenuItem allBookIds, JMenu options) {
+		private void addViewAllBookIdsMenuItem( JMenu options) {
 			allBookIds = new JMenuItem("All Book Ids");
 			allBookIds.addActionListener(new AllBookIdsListener());
 			options.add(allBookIds);
 		}
 		
-		private void addLoginMenuItem(JMenuItem login, JMenu options) {
+		private void addLoginMenuItem(JMenu options) {
 			if (SystemController.currentAuth != null) {
 				login = new JMenuItem("Logout");
 				login.addActionListener(new LogoutListener());
@@ -157,7 +198,53 @@ public class LibrarySystem extends JFrame implements LibWindow {
 		}
     	
     }
-    
+
+	class AddMemberListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
+
+	class AddBookCopyListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
+
+	class AddBookListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
+
+	class CheckoutBookListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
+
+	class PrintCheckoutListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
+	class OverdueListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+	}
     class AllMemberIdsListener implements ActionListener {
 
     	@Override
