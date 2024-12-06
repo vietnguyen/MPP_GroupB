@@ -35,4 +35,4 @@ replay_pid*
 #build folders
 /out/
 **/bin/
-#*.iml
+*.iml
