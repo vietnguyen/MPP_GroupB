@@ -48,13 +48,13 @@ public class LibrarySystem extends JFrame implements LibWindow {
     	formatContentPane();
     	setPathToImage();
     	insertSplashImage();
+			
 		
 		createMenus();
 		//pack();
 		setSize(660,500);
 		isInitialized = true;
     }
-    
     private void formatContentPane() {
 		mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(1,1));
@@ -79,17 +79,48 @@ public class LibrarySystem extends JFrame implements LibWindow {
     
     private void addMenuItems() {
        options = new JMenu("Options");  
- 	   menuBar.add(options);
- 	   login = new JMenuItem("Login");
- 	   login.addActionListener(new LoginListener());
- 	   allBookIds = new JMenuItem("All Book Ids");
- 	   allBookIds.addActionListener(new AllBookIdsListener());
- 	   allMemberIds = new JMenuItem("All Member Ids");
- 	   allMemberIds.addActionListener(new AllMemberIdsListener());
- 	   options.add(login);
- 	   options.add(allBookIds);
- 	   options.add(allMemberIds);
+ 	    menuBar.add(options);
+ 	    addLoginMenuItem(login, options);
+			addViewAllBookIdsMenuItem(allBookIds, options);
+			addViewAllMemberIdsMenuItem(allMemberIds, options);
     }
+		
+		private void addViewAllMemberIdsMenuItem(JMenuItem allMemberIds, JMenu options) {
+			allMemberIds = new JMenuItem("All Member Ids");
+			allMemberIds.addActionListener(new AllMemberIdsListener());
+			options.add(allMemberIds);
+		}
+		
+		private void addViewAllBookIdsMenuItem(JMenuItem allBookIds, JMenu options) {
+			allBookIds = new JMenuItem("All Book Ids");
+			allBookIds.addActionListener(new AllBookIdsListener());
+			options.add(allBookIds);
+		}
+		
+		private void addLoginMenuItem(JMenuItem login, JMenu options) {
+			if (SystemController.currentAuth != null) {
+				login = new JMenuItem("Logout");
+				login.addActionListener(new LogoutListener());
+				options.add(login);
+			}
+			else {
+				login = new JMenuItem("Login");
+				login.addActionListener(new LoginListener());
+				options.add(login);
+			}
+		}
+		
+		class LogoutListener implements ActionListener {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SystemController.currentAuth = null;
+				LibrarySystem.hideAllWindows();
+				LoginWindow.INSTANCE.init();
+				Util.centerFrameOnDesktop(LoginWindow.INSTANCE);
+				LoginWindow.INSTANCE.setVisible(true);
+			}
+		}
     
     class LoginListener implements ActionListener {
 
