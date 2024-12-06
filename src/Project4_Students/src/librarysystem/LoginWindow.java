@@ -47,8 +47,6 @@ public class LoginWindow extends JFrame implements LibWindow {
 
 	ControllerInterface ci = new SystemController();
 	
-	
-	
 	public boolean isInitialized() {
 		return isInitialized;
 	}
