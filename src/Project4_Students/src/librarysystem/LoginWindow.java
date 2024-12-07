@@ -184,8 +184,6 @@ public class LoginWindow extends JFrame implements LibWindow {
     	
     	private void addLoginButtonListener(JButton butn) {
     		butn.addActionListener(evt -> {
-    			
-
           try {
             ci.login(username.getText(), password.getText());
           } catch (LoginException e) {
@@ -194,7 +192,7 @@ public class LoginWindow extends JFrame implements LibWindow {
           }
 					JOptionPane.showMessageDialog(this,"Welcome " + SystemController.currentAuth);
           // hide login window
-					mainPanel.setVisible(false);
+					this.setVisible(false);
 					// Show main application window
 					LibrarySystem.INSTANCE.init();
 					Util.centerFrameOnDesktop(LibrarySystem.INSTANCE);
