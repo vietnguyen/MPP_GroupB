@@ -16,6 +16,7 @@ public class AddMemberPanel extends JPanel {
   private JPanel leftPanel;
   private TextArea textArea;
   private ControllerInterface ci = new SystemController();
+  
   public AddMemberPanel() {
     init();
     setVisible(true);

@@ -15,10 +15,13 @@ public class Main {
 	         {
 	            LibrarySystem.INSTANCE.setTitle("Sample Library Application");
 	            LibrarySystem.INSTANCE.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-						 LoginWindow.INSTANCE.init();
-						 Util.centerFrameOnDesktop(LoginWindow.INSTANCE);
-						 LoginWindow.INSTANCE.setVisible(true);
+							LibrarySystem.INSTANCE.init();
+						 Util.centerFrameOnDesktop(LibrarySystem.INSTANCE);
+							LibrarySystem.INSTANCE.setVisible(true);
+							
+//						 LoginWindow.INSTANCE.init();
+//						 Util.centerFrameOnDesktop(LoginWindow.INSTANCE);
+//						 LoginWindow.INSTANCE.setVisible(true);
 	         });
 	   }
 	   
