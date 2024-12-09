@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 public class LibrarySystem extends JFrame implements LibWindow {
 
-  ControllerInterface ci = new SystemController();
+  ControllerInterface ci = SystemController.INSTANCE;
   public final static LibrarySystem INSTANCE = new LibrarySystem();
   JPanel mainPanel;
   JMenuBar menuBar;
@@ -39,6 +39,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
       LoginWindow.INSTANCE,
       AllMemberIdsWindow.INSTANCE,
       AllBookIdsWindow.INSTANCE,
+      AddMemberWindow.INSTANCE,
   };
 
   public static void hideAllWindows() {
@@ -204,7 +205,11 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      setMainPanel(new AddMemberPanel());
+      LibrarySystem.hideAllWindows();
+      AddMemberWindow.INSTANCE.init();
+      AddMemberWindow.INSTANCE.pack();
+      Util.centerFrameOnDesktop(AddMemberWindow.INSTANCE);
+      AddMemberWindow.INSTANCE.setVisible(true);
     }
   }
 
@@ -238,7 +243,11 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+      LibrarySystem.hideAllWindows();
+      PrintCheckoutWindow.INSTANCE.init();
+      PrintCheckoutWindow.INSTANCE.pack();
+      Util.centerFrameOnDesktop(PrintCheckoutWindow.INSTANCE);
+      PrintCheckoutWindow.INSTANCE.setVisible(true);
     }
   }
 

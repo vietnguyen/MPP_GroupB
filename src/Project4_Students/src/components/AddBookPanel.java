@@ -32,7 +32,7 @@ public class AddBookPanel extends JPanel {
     private JTable copiesTable;
     private java.util.List<JCheckBox> checkBoxes;
     private List<Author> allAuthors;
-    private ControllerInterface ci = new SystemController();
+    private ControllerInterface ci = SystemController.INSTANCE;
 
     public AddBookPanel() {
         allAuthors = ci.allAuthors();

@@ -35,7 +35,7 @@ public class BookManagerPanel extends JPanel implements IPanel {
     private JButton saveButton;
     private JButton addButton;
     List<Book> allBooks;
-    private ControllerInterface ci = new SystemController();
+    private ControllerInterface ci = SystemController.INSTANCE;
     public BookManagerPanel() {
         init();
         setVisible(true);
