@@ -12,7 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class AddMemberForm extends JPanel {
-  ControllerInterface ci = new SystemController();
+  ControllerInterface ci = SystemController.INSTANCE;
   
   public AddMemberForm() {
     init();
