@@ -61,7 +61,8 @@ public class LoginWindow extends JFrame implements LibWindow {
 	/* This class is a singleton */
     private LoginWindow () {}
     
-    public void init() {     		
+    public void init() {    
+			if (isInitialized) return;
     		mainPanel = new JPanel();
     		defineUpperHalf();
     		defineMiddleHalf();
@@ -102,15 +103,10 @@ public class LoginWindow extends JFrame implements LibWindow {
     		
     	}
     	private void defineLowerHalf() {
-
     		lowerHalf = new JPanel();
     		lowerHalf.setLayout(new FlowLayout(FlowLayout.LEFT));
-    		
-    		JButton backButton = new JButton("<= Back to Main");
-    		addBackButtonListener(backButton);
-    		lowerHalf.add(backButton);
-    		
     	}
+			
     	private void defineTopPanel() {
     		topPanel = new JPanel();
     		JPanel intPanel = new JPanel(new BorderLayout());
