@@ -3,6 +3,7 @@ package business;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 import dataaccess.Auth;
 import dataaccess.DataAccess;
@@ -40,6 +41,35 @@ public class SystemController implements ControllerInterface {
 		retval.addAll(da.readBooksMap().keySet());
 		return retval;
 	}
-	
-	
+	@Override
+	public List<Book> allBooks() {
+		DataAccess da = new DataAccessFacade();
+		return da.readBooksMap().values().stream().toList();
+
+	}
+
+	@Override
+	public List<Author> allAuthors() {
+		DataAccess da = new DataAccessFacade();
+		return da.readAuthors();
+
+	}
+
+	@Override
+	public void addNewBook(Book book) {
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+	}
+
+	@Override
+	public Book getBookByIsbn(String isbn) {
+		Optional<Book> filteredBook = allBooks().stream()
+				.filter(book -> book.getIsbn().equalsIgnoreCase(isbn))
+				.findFirst();
+		if (filteredBook.isPresent())
+			return filteredBook.get();
+		else return	null;
+
+	}
+
 }
