@@ -3,7 +3,9 @@ package librarysystem;
 import business.ControllerInterface;
 import business.SystemController;
 import components.AddMemberPanel;
+import components.OverduePanel;
 import librarysystem.checkout.BookCheckoutWindow;
+import components.BookManagerPanel;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -88,7 +91,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
     addViewAllBookIdsMenuItem(options);
     addViewAllMemberIdsMenuItem(options);
     addAddMemberMenuItem(options);
-    addBookMenuItem(options);
     addBookCopyMenuItem(options);
     checkoutBookMenuItem(options);
     printCheckoutMenuItem(options);
@@ -108,11 +110,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
     options.add(this.addMember);
   }
 
-  private void addBookMenuItem(JMenu options) {
-    this.addMember = new JMenuItem("Add Book");
-    this.addMember.addActionListener(new AddBookListener());
-    options.add(this.addMember);
-  }
 
   private void checkoutBookMenuItem(JMenu options) {
     this.addMember = new JMenuItem("Checkout Book");
@@ -187,22 +184,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      LibrarySystem.hideAllWindows();
-      AllBookIdsWindow.INSTANCE.init();
-
-      List<String> ids = ci.allBookIds();
-      Collections.sort(ids);
-      StringBuilder sb = new StringBuilder();
-      for (String s : ids) {
-        sb.append(s + "\n");
-      }
-      System.out.println(sb.toString());
-      AllBookIdsWindow.INSTANCE.setData(sb.toString());
-      AllBookIdsWindow.INSTANCE.pack();
-      //AllBookIdsWindow.INSTANCE.setSize(660,500);
-      Util.centerFrameOnDesktop(AllBookIdsWindow.INSTANCE);
-      AllBookIdsWindow.INSTANCE.setVisible(true);
-
+      setMainPanel(new BookManagerPanel());
     }
 
   }
@@ -214,13 +196,16 @@ public class LibrarySystem extends JFrame implements LibWindow {
       setMainPanel(new AddMemberPanel());
     }
   }
-  
-  private void setMainPanel(JPanel jPanel) {
+
+
+  private void setMainPanel(JComponent jPanel) {
     getContentPane().remove(mainPanel);
     getContentPane().add(jPanel);
     revalidate(); // Refresh the frame to show the new panel
     repaint();
+    pack();
   }
+
 
   class AddBookCopyListener implements ActionListener {
 
@@ -234,7 +219,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+      setMainPanel(new BookManagerPanel());
     }
   }
 
@@ -248,7 +233,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
       Util.centerFrameOnDesktop(BookCheckoutWindow.INSTANCE);
       BookCheckoutWindow.INSTANCE.setVisible(true);
 
-      
+
 
 
     }
@@ -267,15 +252,15 @@ public class LibrarySystem extends JFrame implements LibWindow {
   }
 
   class OverdueListener implements ActionListener {
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
+      OverduePanel.INSTANCE.init();
+      OverduePanel.INSTANCE.setVisible(true);
+      setMainPanel(OverduePanel.INSTANCE);
     }
   }
 
   class AllMemberIdsListener implements ActionListener {
-
     @Override
     public void actionPerformed(ActionEvent e) {
       LibrarySystem.hideAllWindows();
@@ -310,7 +295,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
   @Override
   public void isInitialized(boolean val) {
-    isInitialized = val;
 
   }
 
