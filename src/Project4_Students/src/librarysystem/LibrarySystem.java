@@ -3,6 +3,8 @@ package librarysystem;
 import business.ControllerInterface;
 import business.SystemController;
 import components.AddMemberPanel;
+import components.OverduePanel;
+import librarysystem.checkout.BookCheckoutWindow;
 import components.BookManagerPanel;
 
 import java.awt.GridLayout;
@@ -12,6 +14,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -35,7 +38,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
       LibrarySystem.INSTANCE,
       LoginWindow.INSTANCE,
       AllMemberIdsWindow.INSTANCE,
-      AllBookIdsWindow.INSTANCE
+      AllBookIdsWindow.INSTANCE,
   };
 
   public static void hideAllWindows() {
@@ -193,12 +196,13 @@ public class LibrarySystem extends JFrame implements LibWindow {
     }
   }
 
-  
-  private void setMainPanel(JPanel jPanel) {
+
+  private void setMainPanel(JComponent jPanel) {
     getContentPane().remove(mainPanel);
     getContentPane().add(jPanel);
     revalidate(); // Refresh the frame to show the new panel
     repaint();
+    pack();
   }
 
 
@@ -222,6 +226,14 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      LibrarySystem.hideAllWindows();
+      BookCheckoutWindow.INSTANCE.init();
+      BookCheckoutWindow.INSTANCE.pack();
+      Util.centerFrameOnDesktop(BookCheckoutWindow.INSTANCE);
+      BookCheckoutWindow.INSTANCE.setVisible(true);
+
+
+
 
     }
   }
@@ -235,15 +247,15 @@ public class LibrarySystem extends JFrame implements LibWindow {
   }
 
   class OverdueListener implements ActionListener {
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
+      OverduePanel.INSTANCE.init();
+      OverduePanel.INSTANCE.setVisible(true);
+      setMainPanel(OverduePanel.INSTANCE);
     }
   }
 
   class AllMemberIdsListener implements ActionListener {
-
     @Override
     public void actionPerformed(ActionEvent e) {
       LibrarySystem.hideAllWindows();
@@ -278,7 +290,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
   @Override
   public void isInitialized(boolean val) {
-    isInitialized = val;
 
   }
 

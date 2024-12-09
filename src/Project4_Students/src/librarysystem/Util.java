@@ -1,9 +1,12 @@
 package librarysystem;
 
+import dataaccess.DataAccessFacade;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -70,5 +73,17 @@ public class Util {
 		int frameHeight = f.getSize().height;
 		int frameWidth = f.getSize().width;
 		f.setLocation(((width - frameWidth) / 2), (height - frameHeight) / 3);
+	}
+
+	public static LocalDate parseDate(String date) {
+		try {
+			return LocalDate.parse(date, DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	public static String formatDate(LocalDate date) {
+		return date.format(DateTimeFormatter.ofPattern(DataAccessFacade.DATE_PATTERN));
 	}
 }
