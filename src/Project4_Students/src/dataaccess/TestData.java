@@ -1,13 +1,11 @@
 package dataaccess;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import business.Address;
-import business.Author;
-import business.Book;
-import business.LibraryMember;
+import business.*;
 
 /**
  * This class loads data into the data repository and also
@@ -54,6 +52,7 @@ public class TestData {
 		members.add(libraryMember);
 		
 		libraryMember = new LibraryMember("1003", "Sarah", "Eagleton", "451-234-8811", addresses.get(6));
+		var recordEntry = new CheckoutRecordEntry(LocalDate.now(), allBooks.getFirst().getCopies()[0],  libraryMember);
 		members.add(libraryMember);
 		
 		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));

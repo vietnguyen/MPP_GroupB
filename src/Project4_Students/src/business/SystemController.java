@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.exceptions.CheckoutException;
+import business.exceptions.CheckoutRecordException;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
@@ -76,6 +77,20 @@ public class SystemController implements ControllerInterface {
 		
 		// TODO: save CheckoutRecordEntry and BookCopy to storage
 	}
-	
-	
+
+	@Override
+	public boolean addMember(String memberId, String firstName, String lastName, String phone, String street, String zipCode, String state, String city){
+		// validate
+		LibraryMember member = new LibraryMember(memberId, firstName, lastName, phone, new Address(street, city, state, zipCode));
+		DataAccess da = new DataAccessFacade();
+		da.saveNewMember(member);
+		return true;
+	}
+
+	public CheckoutRecord getCheckoutRecord(String memberId) throws CheckoutRecordException {
+		DataAccess da = new DataAccessFacade();
+		var members = da.readMemberMap();
+		if(members.containsKey(memberId)) return members.get(memberId).getCheckoutRecord();
+		else throw new CheckoutRecordException("Member with given ID not found");
+	}
 }
