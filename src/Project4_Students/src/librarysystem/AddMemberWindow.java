@@ -14,7 +14,7 @@ import javax.swing.*;
 public class AddMemberWindow extends JFrame implements LibWindow {
 	private static final long serialVersionUID = 1L;
 	public static final AddMemberWindow INSTANCE = new AddMemberWindow();
-    ControllerInterface ci = new SystemController();
+    ControllerInterface ci = SystemController.INSTANCE;
     private boolean isInitialized = false;
 	
 	private JPanel mainPanel;

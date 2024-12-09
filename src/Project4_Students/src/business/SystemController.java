@@ -16,7 +16,10 @@ import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
-	public static Auth currentAuth = Auth.BOTH;
+	public static Auth currentAuth = null;
+	public static final SystemController INSTANCE = new SystemController();
+
+	private SystemController() {}
 	
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
@@ -29,8 +32,6 @@ public class SystemController implements ControllerInterface {
 			throw new LoginException("Password incorrect");
 		}
 		currentAuth = map.get(id).getAuthorization();
-		
-		// TODO: initialize CheckoutRecord
 	}
 	@Override
 	public List<String> allMemberIds() {
@@ -81,11 +82,13 @@ public class SystemController implements ControllerInterface {
 			throw new CheckoutException("No available copies for book ISBN " + isbn);
 		}
 
-		LibraryMember member = members.get(memberId);
 		availableCopy.changeAvailability();
-		CheckoutRecordEntry entry = new CheckoutRecordEntry(LocalDate.now(), availableCopy, member);
+		book.updateCopies(availableCopy);
+		da.updateBook(book);
 
-		// TODO: save CheckoutRecordEntry and BookCopy to storage
+		LibraryMember member = members.get(memberId);
+		new CheckoutRecordEntry(LocalDate.now(), availableCopy, member);
+		da.updateMember(member);
 	}
 
     @Override

@@ -19,7 +19,7 @@ import model.OverdueTableModel;
 
 public class OverduePanel extends JPanel {
   public static final OverduePanel INSTANCE = new OverduePanel();
-  private SystemController controller = new SystemController();
+  private SystemController controller = SystemController.INSTANCE;
   private OverdueController overdueController = new OverdueController();
   private static final long serialVersionUID = 1L;
   private boolean isInitialized = false;

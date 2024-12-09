@@ -15,7 +15,7 @@ import java.util.List;
 public class PrintCheckoutWindow extends JFrame implements LibWindow {
     private static final long serialVersionUID = 1000L;
     public static final PrintCheckoutWindow INSTANCE = new PrintCheckoutWindow();
-    ControllerInterface ci = new SystemController();
+    ControllerInterface ci = SystemController.INSTANCE;
     private boolean isInitialized = false;
     private TextArea textArea = new TextArea(20,90);
     private String[] columnNames = { "Book Name", "Book Copy", "Checkout Date", "Due Date" };

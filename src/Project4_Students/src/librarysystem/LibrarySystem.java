@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 public class LibrarySystem extends JFrame implements LibWindow {
 
-  ControllerInterface ci = new SystemController();
+  ControllerInterface ci = SystemController.INSTANCE;
   public final static LibrarySystem INSTANCE = new LibrarySystem();
   JPanel mainPanel;
   JMenuBar menuBar;
