@@ -4,6 +4,7 @@ import business.ControllerInterface;
 import business.SystemController;
 import components.AddMemberPanel;
 import components.OverduePanel;
+import librarysystem.checkout.BookCheckoutWindow;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -242,6 +243,14 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+      LibrarySystem.hideAllWindows();
+      BookCheckoutWindow.INSTANCE.init();
+      BookCheckoutWindow.INSTANCE.pack();
+      Util.centerFrameOnDesktop(BookCheckoutWindow.INSTANCE);
+      BookCheckoutWindow.INSTANCE.setVisible(true);
+
+      
+
 
     }
   }
