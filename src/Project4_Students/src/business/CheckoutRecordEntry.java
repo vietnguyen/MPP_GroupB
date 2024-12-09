@@ -32,7 +32,7 @@ public class CheckoutRecordEntry implements Serializable{
 
     @Override
     public String toString() {
-        return "CheckoutRecordEntry [checkoutDate=" + checkoutDate + ", dueDate=" + dueDate + ", bookCopy=" + bookCopy
-                + "]";
+        return "CheckoutRecordEntry [checkoutDate=" + checkoutDate + ", dueDate=" + dueDate + ", bookCopy=" + bookCopy.getCopyNum()
+                + "]\n";
     }
 }
