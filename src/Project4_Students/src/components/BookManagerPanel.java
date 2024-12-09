@@ -6,6 +6,8 @@ import business.Book;
 import librarysystem.IPanel;
 import librarysystem.LibrarySystem;
 import librarysystem.Util;
+import model.OverdueModel;
+import model.OverdueTableModel;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -23,9 +25,10 @@ public class BookManagerPanel extends JPanel implements IPanel {
 
     public final static BookManagerPanel INSTANCE = new BookManagerPanel();
 
-    private JPanel leftPanel;
-    private JPanel topPanel;
-    private JPanel rightPanel, bottomPanel;
+    private JPanel leftPanel,searchPanel;
+    private JTextField isbnSearchField;
+
+    private JPanel topPanel,rightPanel, bottomPanel;
     private AddBookPanel centerPanel;
     private JTable bookTable; // Table to display books
     private DefaultTableModel tableModel; // Model to manage table data
@@ -68,6 +71,20 @@ public class BookManagerPanel extends JPanel implements IPanel {
         add(leftPanel, BorderLayout.WEST);
 
         leftPanel.setLayout(new BorderLayout());
+
+        //Search area
+        searchPanel = new JPanel();
+        searchPanel.setLayout(new GridLayout(1, 2));
+        searchPanel.setBorder(BorderFactory.createTitledBorder("Search"));
+        isbnSearchField = new JTextField(10);
+        isbnSearchField.addActionListener(e -> {
+            String input = isbnSearchField.getText();
+            searchBooks(input);
+        });
+
+        searchPanel.add(isbnSearchField);
+        leftPanel.add(searchPanel, BorderLayout.NORTH);
+
 
         //Books table
         // Define column names for the table
@@ -142,16 +159,16 @@ public class BookManagerPanel extends JPanel implements IPanel {
         bottomPanel = new JPanel();
         bottomPanel.setLayout( new FlowLayout());
 
-        // Add and Close buttons
-        JButton closeButton = new JButton("CLOSE");
-        closeButton.addActionListener(e -> {
-            Container parent = getParent();
-            if (parent != null) {
-                parent.remove(this); // Remove this panel from the parent container
-                parent.revalidate(); // Refresh layout
-                parent.repaint();    // Repaint the container
-            }
-        });
+//        // Add and Close buttons
+//        JButton closeButton = new JButton("CLOSE");
+//        closeButton.addActionListener(e -> {
+//            Container parent = getParent();
+//            if (parent != null) {
+//                parent.remove(this); // Remove this panel from the parent container
+//                parent.revalidate(); // Refresh layout
+//                parent.repaint();    // Repaint the container
+//            }
+//        });
 
 
         //ADD button
@@ -181,7 +198,7 @@ public class BookManagerPanel extends JPanel implements IPanel {
 
 
         // Add buttons to the bottom panel
-        bottomPanel.add((closeButton));
+        //bottomPanel.add((closeButton));
         bottomPanel.add(addButton);
         bottomPanel.add(saveButton);
 
@@ -216,5 +233,21 @@ public class BookManagerPanel extends JPanel implements IPanel {
         ;
         // Enable/Disable SAVE button
         saveButton.setEnabled(allFieldsFilled);
+    }
+
+
+    private void searchBooks(String keyword) {
+        tableModel.setRowCount(0);
+
+        List<Book> filteredBooks = ci.searchBooks(keyword);
+        if (filteredBooks.isEmpty()) {
+            return;
+        }
+        for (Book b: filteredBooks){
+            tableModel.addRow(new Object[]{b.getIsbn(), b.getTitle()});
+        }
+        bookTable.setModel(tableModel);
+        repaint();
+
     }
 }

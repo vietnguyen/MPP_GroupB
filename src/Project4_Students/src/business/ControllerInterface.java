@@ -15,4 +15,5 @@ public interface ControllerInterface {
     public List<Author> allAuthors();
     public void addNewBook(Book book);
     public Book getBookByIsbn(String isnb);
+    public List<Book> searchBooks(String keyword);
 }

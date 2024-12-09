@@ -1,10 +1,7 @@
 package business;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import business.exceptions.CheckoutException;
 import dataaccess.Auth;
@@ -116,5 +113,12 @@ public class SystemController implements ControllerInterface {
 
     }
 
-	
+	@Override
+	public List<Book> searchBooks(String keyword) {
+		return allBooks().stream()
+				.filter(book -> book.getIsbn().contains(keyword) || book.getTitle().toLowerCase(Locale.ROOT).contains(keyword.toLowerCase()))
+				.toList();
+	}
+
+
 }
