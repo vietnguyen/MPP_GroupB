@@ -1,5 +1,8 @@
 package components;
 
+import business.ControllerInterface;
+import business.SystemController;
+
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -9,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class AddMemberForm extends JPanel {
+  ControllerInterface ci = new SystemController();
   
   public AddMemberForm() {
     init();
@@ -60,16 +64,23 @@ public class AddMemberForm extends JPanel {
       String zip = txtZip.getText();
       String telephone = txtTelephone.getText();
 
-      // Display the entered data
-      JOptionPane.showMessageDialog(this, "Member Details:\n" +
-                                           "Member ID: " + memberId + "\n" +
-                                           "First Name: " + firstName + "\n" +
-                                           "Last Name: " + lastName + "\n" +
-                                           "Street: " + street + "\n" +
-                                           "City: " + city + "\n" +
-                                           "State: " + state + "\n" +
-                                           "ZIP: " + zip + "\n" +
-                                           "Telephone: " + telephone);
+      String message = "";
+
+      try {
+        ci.addMember(memberId, firstName, lastName, telephone, street, zip, state, city);
+        message = "Member Details:\n" +
+                "Member ID: " + memberId + "\n" +
+                "First Name: " + firstName + "\n" +
+                "Last Name: " + lastName + "\n" +
+                "Street: " + street + "\n" +
+                "City: " + city + "\n" +
+                "State: " + state + "\n" +
+                "ZIP: " + zip + "\n" +
+                "Telephone: " + telephone;
+      } catch (Exception ex) {
+        message = ex.getMessage();
+      }
+      JOptionPane.showMessageDialog(this, message);
     });
 
     // Add components to the panel

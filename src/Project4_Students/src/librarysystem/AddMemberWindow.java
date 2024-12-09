@@ -8,10 +8,7 @@ import java.awt.FlowLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 
 public class AddMemberWindow extends JFrame implements LibWindow {
@@ -31,8 +28,17 @@ public class AddMemberWindow extends JFrame implements LibWindow {
 	private AddMemberWindow() {}
 	
 	public void init() {
-		mainPanel = new AddMemberForm();
+		mainPanel = new JPanel();
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		defineTopPanel();
+		defineMiddlePanel();
+		defineLowerPanel();
+
+		mainPanel.add(topPanel, BorderLayout.NORTH);
+		mainPanel.add(middlePanel, BorderLayout.CENTER);
+		mainPanel.add(lowerPanel, BorderLayout.SOUTH);
 		getContentPane().add(mainPanel);
+
 		isInitialized = true;
 		pack();
 	}
@@ -46,19 +52,12 @@ public class AddMemberWindow extends JFrame implements LibWindow {
 	}
 	
 	public void defineMiddlePanel() {
-		middlePanel = new JPanel();
-		FlowLayout fl = new FlowLayout(FlowLayout.CENTER, 25, 25);
-		middlePanel.setLayout(fl);
-		textArea = new TextArea(8, 20);
-		//populateTextArea();
-		middlePanel.add(textArea);
-		
-		
+		middlePanel = new AddMemberForm();
 	}
 	
 	public void defineLowerPanel() {
 		
-		JButton backToMainButn = new JButton("<= Back to Main");
+		JButton backToMainButn = new JButton("Main Menu");
 		backToMainButn.addActionListener(new BackToMainListener());
 		lowerPanel = new JPanel();
 		lowerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));;
@@ -77,17 +76,6 @@ public class AddMemberWindow extends JFrame implements LibWindow {
 	public void setData(String data) {
 		textArea.setText(data);
 	}
-	
-//	private void populateTextArea() {
-//		//populate
-//		List<String> ids = ci.allBookIds();
-//		Collections.sort(ids);
-//		StringBuilder sb = new StringBuilder();
-//		for(String s: ids) {
-//			sb.append(s + "\n");
-//		}
-//		textArea.setText(sb.toString());
-//	}
 
 	@Override
 	public boolean isInitialized() {

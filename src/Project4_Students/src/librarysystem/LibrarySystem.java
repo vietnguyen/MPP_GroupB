@@ -193,7 +193,11 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-      setMainPanel(new AddMemberPanel());
+      LibrarySystem.hideAllWindows();
+      AddMemberWindow.INSTANCE.init();
+      AddMemberWindow.INSTANCE.pack();
+      Util.centerFrameOnDesktop(AddMemberWindow.INSTANCE);
+      AddMemberWindow.INSTANCE.setVisible(true);
     }
   }
 

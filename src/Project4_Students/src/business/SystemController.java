@@ -8,13 +8,15 @@ import java.util.Optional;
 
 import business.exceptions.CheckoutException;
 import business.exceptions.CheckoutRecordException;
+import business.exceptions.InvalidArgumentException;
+import business.exceptions.UnauthorizedException;
 import dataaccess.Auth;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
-	public static Auth currentAuth = null;
+	public static Auth currentAuth = Auth.BOTH;
 	
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
@@ -121,7 +123,28 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public boolean addMember(String memberId, String firstName, String lastName, String phone, String street, String zipCode, String state, String city){
-		// validate
+		if(currentAuth != Auth.ADMIN && currentAuth != Auth.BOTH){
+			throw new UnauthorizedException("You are not authorized to perform this action");
+		}
+		if(memberId == null || memberId.isBlank()
+			|| firstName == null || firstName.isBlank()
+			|| lastName == null || lastName.isBlank()
+			|| phone == null || phone.isBlank()
+			|| street == null || street.isBlank()
+			|| zipCode == null || zipCode.isBlank()
+			|| state == null || state.isBlank()
+			|| city == null || city.isBlank()){
+			throw new InvalidArgumentException("Missing required input");
+		}
+
+		if(!phone.matches("[0-9]{10}")){
+			throw new InvalidArgumentException("Phone number must be 10 digits long");
+		}
+
+		if(!zipCode.matches("[0-9]{5}")){
+			throw new InvalidArgumentException("Zip code must be 5 digits long");
+		}
+
 		LibraryMember member = new LibraryMember(memberId, firstName, lastName, phone, new Address(street, city, state, zipCode));
 		DataAccess da = new DataAccessFacade();
 		da.saveNewMember(member);
