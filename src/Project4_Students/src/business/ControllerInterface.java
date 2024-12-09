@@ -18,4 +18,5 @@ public interface ControllerInterface {
     public Book getBookByIsbn(String isnb);
 	boolean addMember(String memberId, String firstName, String lastName, String phone, String street, String zipCode, String state, String city);
 	CheckoutRecord getCheckoutRecord(String memberId) throws CheckoutRecordException;
+    public List<Book> searchBooks(String keyword);
 }

@@ -39,7 +39,7 @@ public class AddBookPanel extends JPanel {
         initLayout();
     }
 
-    public void initLayout() {
+    private void initLayout() {
         //init new book
         if (currentBook == null)
             currentBook = new Book("", "", 30, new ArrayList<Author>());
@@ -64,7 +64,7 @@ public class AddBookPanel extends JPanel {
         setVisible(true);
     }
 
-    public void initAuthorsPanel() {
+    private void initAuthorsPanel() {
 
         // Panel for checkboxes
         authorBoxesPanel = new JPanel();
@@ -81,7 +81,7 @@ public class AddBookPanel extends JPanel {
 
     }
 
-    public void initBookPanel(){
+    private void initBookPanel(){
         if(isInitBookPanel) return;
 
         // Create the panel to hold the form elements
@@ -168,7 +168,7 @@ public class AddBookPanel extends JPanel {
         isInitBookPanel = true;
     }
 
-    public void initBookCopiesPanel(){
+    private void initBookCopiesPanel(){
         if(isInitBookCopiesPanel) return;
 
         //Tab book copies
@@ -199,7 +199,7 @@ public class AddBookPanel extends JPanel {
         isInitBookCopiesPanel = true;
     }
 
-    public void bindBookData() {
+    private void bindBookData() {
         if (currentBook == null)
             currentBook = new Book("", "", 30, new ArrayList<Author>());
 
@@ -218,7 +218,7 @@ public class AddBookPanel extends JPanel {
 
     }
 
-    public void bindBookCopiesData(){
+    private void bindBookCopiesData(){
         //add book lines into table model
         String[] columnNames = {"Copy#", "Available"};
         // Create the table model and JTable
@@ -233,7 +233,7 @@ public class AddBookPanel extends JPanel {
 
     }
     // Set fields from an existing Book object
-    public void setFromBook(Optional<Book> book) {
+    void setFromBook(Optional<Book> book) {
         if (book.isPresent()) {
             currentBook = book.get();
             bindBookData();
@@ -251,7 +251,7 @@ public class AddBookPanel extends JPanel {
 
 
     // Get input and create a Book object
-    public Book toBook() {
+    Book toBook() {
 
         currentBook.setIsbn(this.isbnField.getText());
         currentBook.setTitle(this.titleField.getText());
