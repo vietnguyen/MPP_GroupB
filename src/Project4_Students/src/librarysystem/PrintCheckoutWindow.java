@@ -65,6 +65,7 @@ public class PrintCheckoutWindow extends JFrame implements LibWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    dtm.setRowCount(0);
                     ArrayList<ArrayList<String>> dataList = new ArrayList<>();
                     String memberId = memberIdField.getText();
                     var recordEntries = ci.getCheckoutRecord(memberId).getCheckoutRecordEntries();
