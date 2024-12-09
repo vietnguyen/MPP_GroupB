@@ -14,7 +14,6 @@ public class OverdueController {
 
   private SystemController systemController = new SystemController();
   private DataAccess da = new DataAccessFacade();
-  private static final List<CheckoutRecordEntry> listRecordEntries = new ArrayList<>();
   private static HashMap<String, Book> allBooks;
   private List<LibraryMember> members;
   public OverdueController() {
