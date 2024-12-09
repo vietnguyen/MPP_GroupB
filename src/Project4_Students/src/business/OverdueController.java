@@ -12,7 +12,7 @@ import model.OverdueModel;
 
 public class OverdueController {
 
-  private SystemController systemController = new SystemController();
+  private SystemController systemController = SystemController.INSTANCE;
   private DataAccess da = new DataAccessFacade();
   private static final List<CheckoutRecordEntry> listRecordEntries = new ArrayList<>();
   private static HashMap<String, Book> allBooks;

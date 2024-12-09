@@ -52,7 +52,7 @@ public class TestData {
 		members.add(libraryMember);
 		
 		libraryMember = new LibraryMember("1003", "Sarah", "Eagleton", "451-234-8811", addresses.get(6));
-		var recordEntry = new CheckoutRecordEntry(LocalDate.now(), allBooks.getFirst().getCopies()[0],  libraryMember);
+		var recordEntry = new CheckoutRecordEntry(LocalDate.now(), allBooks.get(0).getCopies()[0],  libraryMember);
 		members.add(libraryMember);
 		
 		libraryMember = new LibraryMember("1004", "Ricardo", "Montalbahn", "641-472-2871", addresses.get(7));

@@ -4,6 +4,10 @@ import librarysystem.LibWindow;
 import librarysystem.LibrarySystem;
 
 import javax.swing.*;
+
+import business.SystemController;
+import business.exceptions.CheckoutException;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,11 +59,26 @@ public class BookCheckoutWindow extends JFrame implements LibWindow {
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SystemController controller = SystemController.INSTANCE;
                 String memberId = memberIdField.getText();
                 String isbn = isbnField.getText();
-                // Add logic to handle the checkout process
-                // For example, call a method to check if the book is available and checkout
-                // If successful, update the JTable with the new checkout record
+                try {
+                    controller.checkoutBook(memberId, isbn);
+                } catch (CheckoutException ex) {
+                    JOptionPane.showMessageDialog(BookCheckoutWindow.this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                catch (Exception ex) {
+                    JOptionPane.showMessageDialog(BookCheckoutWindow.this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                JOptionPane.showMessageDialog(BookCheckoutWindow.this, "Book checked out successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+                memberIdField.setText("");
+                isbnField.setText("");
+                setVisible(false);
+                LibrarySystem.hideAllWindows();
+                LibrarySystem.INSTANCE.setVisible(true);
             }
         });
 
