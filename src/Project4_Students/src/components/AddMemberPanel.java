@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class AddMemberPanel extends JPanel {
   private JPanel leftPanel;
   private TextArea textArea;
-  private ControllerInterface ci = new SystemController();
+  private ControllerInterface ci = SystemController.INSTANCE;
   
   public AddMemberPanel() {
     init();
