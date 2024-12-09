@@ -29,8 +29,8 @@ public class LibrarySystem extends JFrame implements LibWindow {
   public final static LibrarySystem INSTANCE = new LibrarySystem();
   JPanel mainPanel;
   JMenuBar menuBar;
-  JMenu options;
-  JMenuItem login, allBookIds, allMemberIds, addMember, addBookCopy, addBook, checkOutBook, printCheckout, overdue;
+  JMenu options,eLib;
+  JMenuItem login, allBookIds, allMemberIds, addMember, home, addBook, checkOutBook, printCheckout, overdue;
   String pathToImage;
   private boolean isInitialized = false;
 
@@ -85,30 +85,32 @@ public class LibrarySystem extends JFrame implements LibWindow {
   }
 
   private void addMenuItems() {
+    eLib = new JMenu("eLib");
     options = new JMenu("Options");
+    menuBar.add(eLib);
     menuBar.add(options);
 
+    addHomeMenuItem(eLib);
     addViewAllBookIdsMenuItem(options);
     addViewAllMemberIdsMenuItem(options);
     addAddMemberMenuItem(options);
-    addBookCopyMenuItem(options);
     checkoutBookMenuItem(options);
     printCheckoutMenuItem(options);
     overdueMenuItem(options);
     addLoginMenuItem(options);
   }
 
+  private void addHomeMenuItem(JMenu menus) {
+    home = new JMenuItem("Home");
+    home.addActionListener(new HomeListener());
+    menus.add(home);
+  }
   private void addAddMemberMenuItem(JMenu options) {
     this.addMember = new JMenuItem("Add Member");
     this.addMember.addActionListener(new AddMemberListener());
     options.add(this.addMember);
   }
 
-  private void addBookCopyMenuItem(JMenu options) {
-    this.addMember = new JMenuItem("Add Book Copy");
-    this.addMember.addActionListener(new AddBookCopyListener());
-    options.add(this.addMember);
-  }
 
 
   private void checkoutBookMenuItem(JMenu options) {
@@ -138,7 +140,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
   }
 
   private void addViewAllBookIdsMenuItem(JMenu options) {
-    allBookIds = new JMenuItem("All Book Ids");
+    allBookIds = new JMenuItem("All Books");
     allBookIds.addActionListener(new AllBookIdsListener());
     options.add(allBookIds);
   }
@@ -180,6 +182,16 @@ public class LibrarySystem extends JFrame implements LibWindow {
 
   }
 
+  class HomeListener implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      getContentPane().removeAll();
+      getContentPane().add(mainPanel);
+      repaint();
+    }
+
+  }
+
   class AllBookIdsListener implements ActionListener {
 
     @Override
@@ -210,22 +222,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
     pack();
   }
 
-
-  class AddBookCopyListener implements ActionListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-  }
-
-  class AddBookListener implements ActionListener {
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-      setMainPanel(new BookManagerPanel());
-    }
-  }
 
   class CheckoutBookListener implements ActionListener {
 
