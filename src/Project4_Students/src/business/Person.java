@@ -38,4 +38,14 @@ public class Person implements Serializable {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	@Override
+	public boolean equals(Object aPerson) {
+		if(aPerson == null) return false;
+		if(!(aPerson instanceof Person)) return false;
+		Person p = (Person)aPerson;
+		return  this.firstName.equals(p.firstName);
+//				&& this.lastName.equals(p.lastName)
+//				&& this.telephone.equals(p.telephone);
+	}
 }

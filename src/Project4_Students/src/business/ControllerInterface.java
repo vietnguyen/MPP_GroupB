@@ -11,4 +11,8 @@ public interface ControllerInterface {
 	public List<String> allMemberIds();
 	public List<String> allBookIds();
 	public List<LibraryMember> findAllLibraryMembers();
+    public List<Book> allBooks();
+    public List<Author> allAuthors();
+    public void addNewBook(Book book);
+    public Book getBookByIsbn(String isnb);
 }
