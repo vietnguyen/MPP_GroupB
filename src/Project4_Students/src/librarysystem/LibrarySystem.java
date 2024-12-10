@@ -39,7 +39,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
       BookManagerPanel.INSTANCE,
       mainPanel
   };
-  
+
   private static LibWindow[] allWindows = {
       LibrarySystem.INSTANCE,
       LoginWindow.INSTANCE,
@@ -211,6 +211,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
     public void actionPerformed(ActionEvent e) {
       removeAllPanels();
       LibrarySystem.INSTANCE.getContentPane().add(mainPanel);
+      pack();
       repaint();
     }
 
@@ -237,7 +238,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
       AddMemberWindow.INSTANCE.setVisible(true);
     }
   }
-  
+
   private void setMainPanel(JComponent jPanel) {
     removeAllPanels();
     LibrarySystem.INSTANCE.getContentPane().add(jPanel);
@@ -320,7 +321,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
   public void isInitialized(boolean val) {
 
   }
-  
+
   private void removeAllPanels() {
     for (JPanel panel : allPanels) {
       LibrarySystem.INSTANCE.getContentPane().remove(panel);

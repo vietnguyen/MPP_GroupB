@@ -253,10 +253,6 @@ public class AddBookPanel extends JPanel {
     // Get input and create a Book object
     Book toBook() {
 
-        currentBook.setIsbn(this.isbnField.getText());
-        currentBook.setTitle(this.titleField.getText());
-        currentBook.setMaxCheckoutLength(Integer.parseInt(this.getCheckoutDaysField().getText()));
-
         List<Author> selectedAuthors = new ArrayList<>();
         List<Author> allAuthors = ci.allAuthors();
         for (JCheckBox chk : checkBoxes) {
@@ -272,7 +268,7 @@ public class AddBookPanel extends JPanel {
             }
 
         }
-        currentBook.setAuthors(selectedAuthors);
+        currentBook = new Book(isbnField.getText(),titleField.getText(),Integer.parseInt(this.getCheckoutDaysField().getText()),selectedAuthors);
         return currentBook;
     }
 
