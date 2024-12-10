@@ -187,6 +187,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
     public void actionPerformed(ActionEvent e) {
       getContentPane().removeAll();
       getContentPane().add(mainPanel);
+      pack();
       repaint();
     }
 
