@@ -11,6 +11,7 @@
 <img src="./images/login.jpg">
 
 ### 2.Add New Library Member Sequence Diagram
+<img src="./images/AddNewMemberSequenceDiagram.png">
 ### 3.Checkout Book Sequence Diagram
 <img src="./images/BookCheckout_v2.jpg" width="100%">
 ### 4.Add Copy Sequence Diagram
@@ -20,6 +21,7 @@
 <img src="./images/AddBookDiagram.png">
 
 ### 6.Print Checkout Record Sequence Diagram
+<img src="./images/PrintCheckoutRecordSequenceDiagram.png">
 
 ### 7.Overdue Checkout Record Sequence Diagram
 <img src="./images/overdue.jpg">
