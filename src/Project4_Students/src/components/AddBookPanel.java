@@ -268,7 +268,11 @@ public class AddBookPanel extends JPanel {
             }
 
         }
-        currentBook = new Book(isbnField.getText(),titleField.getText(),Integer.parseInt(this.getCheckoutDaysField().getText()),selectedAuthors);
+        currentBook.setIsbn(isbnField.getText());
+        currentBook.setTitle(titleField.getText());
+        currentBook.setMaxCheckoutLength(Integer.parseInt(this.getCheckoutDaysField().getText()));
+        currentBook.setAuthors(selectedAuthors);
+
         return currentBook;
     }
 
