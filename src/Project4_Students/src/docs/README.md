@@ -3,7 +3,7 @@
 <img src="./images/UseCaseDiagram.png">
 
 ## II. Class Diagram
-<img src="./images/eLibClassDiagram.png">
+<img src="./images/eLibClassDiagram_v2.png">
 
 ## III. Sequence Diagram
 
