@@ -1,10 +1,7 @@
 package business;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import business.exceptions.CheckoutException;
 import business.exceptions.CheckoutRecordException;
@@ -24,14 +21,8 @@ public class SystemController implements ControllerInterface {
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
-		if(!map.containsKey(id)) {
-			throw new LoginException("ID " + id + " not found");
-		}
-		String passwordFound = map.get(id).getPassword();
-		if(!passwordFound.equals(password)) {
-			throw new LoginException("Password incorrect");
-		}
-		currentAuth = map.get(id).getAuthorization();
+		validateUserAndPassword(id, password, map);
+		setCurrentAuth(map.get(id).getAuthorization());
 	}
 	@Override
 	public List<String> allMemberIds() {
@@ -122,7 +113,15 @@ public class SystemController implements ControllerInterface {
 
     }
 
-	
+	@Override
+	public List<Book> searchBooks(String keyword) {
+		return allBooks().stream()
+				.filter(book -> book.getIsbn().contains(keyword) || book.getTitle().toLowerCase(Locale.ROOT).contains(keyword.toLowerCase()))
+				.toList();
+	}
+
+
+
 
 	@Override
 	public boolean addMember(String memberId, String firstName, String lastName, String phone, String street, String zipCode, String state, String city){
@@ -166,5 +165,19 @@ public class SystemController implements ControllerInterface {
 		var members = da.readMemberMap();
 		if(members.containsKey(memberId)) return members.get(memberId).getCheckoutRecord();
 		else throw new CheckoutRecordException("Member with given ID not found");
+	}
+	
+	private void validateUserAndPassword(String id, String password, HashMap<String, User> map) throws LoginException {
+		if(!map.containsKey(id)) {
+			throw new LoginException("ID " + id + " not found");
+		}
+		String passwordFound = map.get(id).getPassword();
+		if(!passwordFound.equals(password)) {
+			throw new LoginException("Password incorrect");
+		}
+	}
+	
+	private void setCurrentAuth(Auth auth) {
+		currentAuth = auth;
 	}
 }
