@@ -8,6 +8,8 @@
 ## III. Sequence Diagram
 
 ### 1.Login Sequence Diagram
+<img src="./images/login.jpg">
+
 ### 2.Add New Library Member Sequence Diagram
 ### 3.Checkout Book Sequence Diagram
 ### 4.Add Copy Sequence Diagram
@@ -19,6 +21,7 @@
 ### 6.Print Checkout Record Sequence Diagram
 
 ### 7.Overdue Checkout Record Sequence Diagram
+<img src="./images/overdue.jpg">
 
 ## IV. UI
 ### Demo
