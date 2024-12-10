@@ -143,7 +143,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
   private void overdueMenuItem(JMenu options) {
     this.overdue = new JMenuItem("Overdue");
     if (SystemController.currentAuth == Auth.ADMIN) {
-      this.allBookIds.setEnabled(false);
+      this.overdue.setEnabled(false);
     }
     this.overdue.addActionListener(new OverdueListener());
     options.add(this.overdue);
@@ -162,7 +162,7 @@ public class LibrarySystem extends JFrame implements LibWindow {
   private void addViewAllBookIdsMenuItem(JMenu options) {
     allBookIds = new JMenuItem("All Books");
     if (SystemController.currentAuth == Auth.LIBRARIAN) {
-      this.allBookIds.setEnabled(false);
+      allBookIds.setEnabled(false);
     }
     allBookIds.addActionListener(new AllBookIdsListener());
     options.add(allBookIds);

@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -130,7 +132,7 @@ public class LoginWindow extends JFrame implements LibWindow {
     	private void defineLowerPanel() {
     		lowerPanel = new JPanel();
     		loginButton = new JButton("Login");
-    		addLoginButtonListener(loginButton);
+    		loginButton.addActionListener(evt -> addLoginListener(evt));
     		lowerPanel.add(loginButton);
     	}
 
@@ -146,6 +148,7 @@ public class LoginWindow extends JFrame implements LibWindow {
     		label.setFont(Util.makeSmallFont(label.getFont()));
     		topText.add(username);
     		bottomText.add(label);
+				username.addActionListener(evt -> addLoginListener(evt));
     		
     		leftTextPanel = new JPanel();
     		leftTextPanel.setLayout(new BorderLayout());
@@ -164,6 +167,7 @@ public class LoginWindow extends JFrame implements LibWindow {
     		label.setFont(Util.makeSmallFont(label.getFont()));
     		topText.add(password);
     		bottomText.add(label);
+				password.addActionListener(evt -> addLoginListener(evt));
     		
     		rightTextPanel = new JPanel();
     		rightTextPanel.setLayout(new BorderLayout());
@@ -178,8 +182,7 @@ public class LoginWindow extends JFrame implements LibWindow {
     		});
     	}
     	
-    	private void addLoginButtonListener(JButton butn) {
-    		butn.addActionListener(evt -> {
+    	private void addLoginListener(ActionEvent event) {
           try {
             ci.login(username.getText(), password.getText());
           } catch (LoginException e) {
@@ -193,7 +196,6 @@ public class LoginWindow extends JFrame implements LibWindow {
 					LibrarySystem.INSTANCE.init();
 					Util.centerFrameOnDesktop(LibrarySystem.INSTANCE);
 					LibrarySystem.INSTANCE.setVisible(true);
-    		});
     	}
 	
         
