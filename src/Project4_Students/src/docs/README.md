@@ -12,7 +12,7 @@
 
 ### 2.Add New Library Member Sequence Diagram
 ### 3.Checkout Book Sequence Diagram
-<img src="./images/BookCheckout.jpg" width="100%">
+<img src="./images/BookCheckout_v2.jpg" width="100%">
 ### 4.Add Copy Sequence Diagram
 <img src="./images/AddBookCopyDiagram.png">
 
