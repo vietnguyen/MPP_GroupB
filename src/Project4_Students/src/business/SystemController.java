@@ -147,13 +147,20 @@ public class SystemController implements ControllerInterface {
 			throw new InvalidArgumentException("Zip code must be 5 digits long");
 		}
 
-		LibraryMember member = new LibraryMember(memberId, firstName, lastName, phone, new Address(street, city, state, zipCode));
 		DataAccess da = new DataAccessFacade();
+		var members = da.readMemberMap();
+		if(members.containsKey(memberId)) throw new InvalidArgumentException("There is already an existing member with this ID");
+
+		LibraryMember member = new LibraryMember(memberId, firstName, lastName, phone, new Address(street, city, state, zipCode));
 		da.saveNewMember(member);
 		return true;
 	}
 
 	public CheckoutRecord getCheckoutRecord(String memberId) throws CheckoutRecordException {
+		if(currentAuth != Auth.LIBRARIAN && currentAuth != Auth.BOTH){
+			throw new UnauthorizedException("You are not authorized to perform this action");
+		}
+
 		DataAccess da = new DataAccessFacade();
 		var members = da.readMemberMap();
 		if(members.containsKey(memberId)) return members.get(memberId).getCheckoutRecord();
