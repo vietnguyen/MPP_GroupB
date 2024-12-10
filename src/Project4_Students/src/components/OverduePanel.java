@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -41,7 +42,11 @@ public class OverduePanel extends JPanel {
     JTextField textField = new JTextField(10);
     textField.addActionListener(e -> {
       String input = textField.getText();
-      searchBook(input);
+      try {
+        searchBook(input);
+      } catch (IllegalArgumentException ex) {
+        JOptionPane.showMessageDialog(this, "Cannot find book with ISBN " + input);
+      }
     });
     
     topPanel.add(label);

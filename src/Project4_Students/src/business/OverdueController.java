@@ -45,7 +45,11 @@ public class OverdueController {
       OverdueModel model = new OverdueModel(null, copy, null);
       overdueModels.add(model);
     }
-
+    findMemberCheckoutEntries(members, overdueModels, isbn);
+    return overdueModels;
+  }
+  
+  private void findMemberCheckoutEntries(List<LibraryMember> members, List<OverdueModel> overdueModels, String isbn) {
     members.forEach(member -> {
       List<CheckoutRecordEntry> memberEntries = member.getCheckoutRecord()
           .getCheckoutRecordEntries();
@@ -60,6 +64,5 @@ public class OverdueController {
         }
       });
     });
-    return overdueModels;
   }
 }
