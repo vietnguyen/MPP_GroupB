@@ -18,5 +18,5 @@ Provides a skeletal implementation of the List interface to reduce the effort re
 
 ### E. Diamond Problem 
 
-1. Type D is a class: class B and C can have default methods with the same signature. Then class D must override the method.
-2. Type D is an interface: interface B and C can have default methods with the same signature. Then interface D can extend the method, or define its own default method .
+1. Type D is a class: interface B and C can have default methods with the same signature. Then class D must override the method.
+2. Type D is an interface: interface B and C can have default methods with the same signature. Then interface D must define its own default method with same signature.
