@@ -1,0 +1,1 @@
+Employee class has an `equal` method but it doesn't has `@Override` annotation. Meaning the default `equal` method from `Object` is used when we compare two objects of Employee class.
