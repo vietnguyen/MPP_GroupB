@@ -257,10 +257,6 @@ public class LibrarySystem extends JFrame implements LibWindow {
       BookCheckoutWindow.INSTANCE.pack();
       Util.centerFrameOnDesktop(BookCheckoutWindow.INSTANCE);
       BookCheckoutWindow.INSTANCE.setVisible(true);
-
-
-
-
     }
   }
 
