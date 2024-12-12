@@ -1,0 +1,1 @@
+This approach use a `HashMap` to store list of unique Employee. However the class Employee doesn't override the `hashCode` method from `Object` class. Therefore the method `map.contains(employee)` use the default `hashCode` method and always return false. 
