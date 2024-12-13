@@ -2,6 +2,8 @@ package lesson9.labs.prob2;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Main {
 	List<Order> orders;
 	public static void main(String[] args) {
@@ -14,7 +16,12 @@ public class Main {
 	//Uses flatMap to write to console a list of all order items
 	private void showAllOrderItems() {
 		System.out.println("\n==============\nAll order items:");
-		//implement
+
+		//print all order items
+		Stream<OrderItem> allOrderItems = orders.stream()
+				.flatMap(order -> order.getOrderItems().stream());
+		allOrderItems.forEach(System.out::println);
+
 	}
 	
 	private void displayAllOrders() {

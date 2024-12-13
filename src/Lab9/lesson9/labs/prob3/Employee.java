@@ -1,8 +1,6 @@
 package lesson9.labs.prob3;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
@@ -45,7 +43,9 @@ public class Employee {
 		};
 		//expected output:
 		//[[Jim, 100000], [Jim, 75000], [Jim, 70000], [Joe, 59000], [Joe, 50000], [Rich, 88000], [Steve, 55000], [Tom, 80000]]
-		System.out.println(/*implement */);
+		list.sort(Comparator.comparing(Employee::getName)
+                .thenComparing(Employee::getSalary, Comparator.reverseOrder()));
+		System.out.println(list);
 	}
 }
 
