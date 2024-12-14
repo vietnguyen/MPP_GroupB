@@ -21,7 +21,9 @@ public class Main {
 		List<LibraryMember> mems = new ArrayList<>();
 		mems.addAll(members);
 		//implement
-		return null;
+		return mems.stream().filter(m->m.getAddress().getZip().contains("3"))
+				.map(LibraryMember::getMemberId)
+				.toList();
 		
 	}
 	//Returns a list of all isbns of books having at least two copies
@@ -31,7 +33,9 @@ public class Main {
 			List<Book> bs = new ArrayList<>();
 			bs.addAll(books);
 			//implement
-			return null;
+			return bs.stream().filter(b->b.getNumCopies() > 2)
+					.map(Book::getIsbn)
+					.toList();
 			
 		}
 	
@@ -42,7 +46,9 @@ public class Main {
 		List<Book> bs = new ArrayList<>();
 		bs.addAll(books);
 		//implement
-		return null;
+		return bs.stream().filter(book -> book.getAuthors().size() > 1)
+				.map(Book::getIsbn)
+				.toList();
 		
 		}
 
