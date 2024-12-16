@@ -5,7 +5,10 @@ import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
+
         printSquares(5);
+
+        printSquares2(10);
     }
 
     public static void printSquares(int num) {
@@ -16,5 +19,15 @@ public class Main {
                 .collect(Collectors.joining(", "))
         );
         
+    }
+
+    public static void printSquares2(int num) {
+        Stream.iterate(1,Main::nextSquare).limit(num).forEach(System.out::println);
+    }
+
+    private static int nextSquare(int n){
+        int sq = (int)Math.floor( Math.sqrt(n));
+
+        return (sq+1) * (sq+1);
     }
 }
