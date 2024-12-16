@@ -21,7 +21,16 @@ public class Main {
 					.orElse("")
 			).anyMatch(name -> name.equals(prodName));
 	}
-	
+	private boolean findProduct2(String prodName) {
+
+		return orderItems.stream()
+				.map(Optional::ofNullable) // Wrap each OrderItem in an Optional. map handle null exception itself
+				.map(optItem -> optItem.map(OrderItem::getProduct)) // Map OrderItem to Product
+				.map(optProduct -> optProduct.map(Product::getProductName)) // Map Product to ProductName
+				.flatMap(Optional::stream) // Flatten to a stream of product names
+				.anyMatch(name -> name.equals(prodName)); // Check for match
+
+	}
 	private void loadOrderItemData() {
 		orderItems.add(new OrderItem(new Product("1016", "Tools", 131.00), 3));
 		orderItems.add(new OrderItem(new Product("1017", "Fishing Rod", 111.00), 1));
