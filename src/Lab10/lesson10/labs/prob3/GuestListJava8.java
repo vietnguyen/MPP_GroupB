@@ -30,6 +30,17 @@ public class GuestListJava8 {
 	
 	public void printListOfExpectedFemaleGuests(List<Guest> invited) {
 		//implement
+		invited.stream()
+				.filter( g-> {
+                    try {
+                        return checkLegal(g) && g.getGender() == Gender.F && g.isPlanningToCome();
+                    } catch (IllegalGuestException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+				.map(g->g.getName())
+				.sorted()
+				.forEach(System.out::println);
 	}
 	
 	
